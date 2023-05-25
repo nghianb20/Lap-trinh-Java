@@ -27,21 +27,53 @@ public class Banve extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel4 = new javax.swing.JLabel();
+        troveBtn = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel4.setText("Bán vé");
+
+        troveBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        troveBtn.setText("<< Trở về");
+        troveBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        troveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                troveBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(troveBtn)
+                .addGap(167, 167, 167)
+                .addComponent(jLabel4)
+                .addContainerGap(286, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(troveBtn)
+                    .addComponent(jLabel4))
+                .addContainerGap(571, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void troveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_troveBtnActionPerformed
+        // TODO add your handling code here:
+        MenuQuanTri mn=new MenuQuanTri();
+        mn.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_troveBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +111,7 @@ public class Banve extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton troveBtn;
     // End of variables declaration//GEN-END:variables
 }

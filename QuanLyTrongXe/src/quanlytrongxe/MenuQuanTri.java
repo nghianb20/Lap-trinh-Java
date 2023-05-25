@@ -179,18 +179,30 @@ public class MenuQuanTri extends javax.swing.JFrame {
 
     private void QuanlykhachhangBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuanlykhachhangBtnActionPerformed
         // TODO add your handling code here:
+        Quanlykhachhang qlkh=new Quanlykhachhang();
+        qlkh.setVisible(true);
+        dispose();
     }//GEN-LAST:event_QuanlykhachhangBtnActionPerformed
 
     private void BanveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BanveBtnActionPerformed
         // TODO add your handling code here:
+        Banve bv=new Banve();
+        bv.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BanveBtnActionPerformed
 
     private void TrucBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrucBtnActionPerformed
         // TODO add your handling code here:
+        Quanlytruc truc=new Quanlytruc();
+        truc.setVisible(true);
+        dispose();
     }//GEN-LAST:event_TrucBtnActionPerformed
 
     private void DoanhthuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DoanhthuBtnActionPerformed
         // TODO add your handling code here:
+        Doanhthu dt=new Doanhthu();
+        dt.setVisible(true);
+        dispose();
     }//GEN-LAST:event_DoanhthuBtnActionPerformed
 
     /**
