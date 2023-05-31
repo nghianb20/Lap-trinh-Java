@@ -88,6 +88,11 @@ public class Quanlynhanvien extends javax.swing.JFrame {
         jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         textTennv.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        textTennv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textTennvActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Sắp xếp");
         jButton5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -267,6 +272,10 @@ public class Quanlynhanvien extends javax.swing.JFrame {
         mn.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void textTennvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTennvActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textTennvActionPerformed
 
     /**
      * @param args the command line arguments
