@@ -11,9 +11,7 @@ package quanlytrongxe;
  */
 public class Doanhthu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Doanhthu
-     */
+
     public Doanhthu() {
         initComponents();
     }
