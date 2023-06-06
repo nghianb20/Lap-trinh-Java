@@ -5,12 +5,22 @@
  */
 package quanlytrongxe;
 
-import com.toedter.calendar.JCalendar;
-
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.Collator;
+import java.text.ParseException;
+import java.text.RuleBasedCollator;
+import javax.swing.JFileChooser;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.Locale;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import quanlytrongxe.Class.Nhanvien;
 import quanlytrongxe.Table.Tablenhanvien;
@@ -26,9 +36,40 @@ public class Quanlynhanvien extends javax.swing.JFrame {
     int dongchon = -1;
     Nhanvien nv = new Nhanvien();
 
+    public void fakedata() {
+        // Tạo dữ liệu mẫu
+        Nhanvien nv1 = new Nhanvien("NV001", "Nguyễn Văn D", "Hà Nội", "Nam", 123456789, "01-01-2000", 1.5, 500000, 2700000);
+        Nhanvien nv2 = new Nhanvien("NV002", "Trần Thị A", "Hồ Chí Minh", "Nữ", 987654321, "02-02-1999", 2.0, 1000000, 3800000);
+        Nhanvien nv3 = new Nhanvien("NV003", "Lê Văn G", "Đà Nẵng", "Nam", 456123789, "03-03-1998", 1.8, 700000, 3200000);
+        Nhanvien nv4 = new Nhanvien("NV004", "Phạm Thị D", "Hải Phòng", "Nữ", 654321987, "04-04-1997", 1.6, 800000, 2900000);
+        Nhanvien nv5 = new Nhanvien("NV005", "Vũ Thị E", "Cần Thơ", "Nữ", 321987654, "05-05-1996", 1.7, 900000, 3100000);
+        Nhanvien nv6 = new Nhanvien("NV006", "Đinh Thị F", "Huế", "Nữ", 789456123, "06-06-1995", 2.2, 1200000, 4200000);
+        Nhanvien nv7 = new Nhanvien("NV007", "Hoàng Thị G", "Nha Trang", "Nữ", 159357486, "07-07-1994", 1.9, 1000000, 3500000);
+        Nhanvien nv8 = new Nhanvien("NV008", "Lý Thị H", "Đà Lạt", "Nữ", 753159852, "08-08-1993", 1.8, 800000, 3200000);
+        Nhanvien nv9 = new Nhanvien("NV009", "Trương Văn I", "Vũng Tàu", "Nam", 852963741, "09-09-1992", 2.5, 1500000, 4200000);
+        Nhanvien nv10 = new Nhanvien("NV010", "Nguyễn Thị I", "Hải Dương", "Nữ", 246813579, "10-10-1991", 1.5, 500000, 2700000);
+
+        // Thêm dữ liệu vào danh sách dsnv
+        dsnv.add(nv1);
+        dsnv.add(nv2);
+        dsnv.add(nv3);
+        dsnv.add(nv4);
+        dsnv.add(nv5);
+        dsnv.add(nv6);
+        dsnv.add(nv7);
+        dsnv.add(nv8);
+        dsnv.add(nv9);
+        dsnv.add(nv10);
+
+        // Hiển thị dữ liệu trong tablenhanvien
+        loadtablenhanvien();
+    }
+
     public Quanlynhanvien() {
         initComponents();
+        fakedata();
         loadtablenhanvien();
+        setLocationRelativeTo(null);
     }
 
     public void loadtablenhanvien() {
@@ -42,6 +83,7 @@ public class Quanlynhanvien extends javax.swing.JFrame {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         return dateFormat.format(date);
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -55,13 +97,12 @@ public class Quanlynhanvien extends javax.swing.JFrame {
         txtSdt = new javax.swing.JTextField();
         btnThem = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnSua = new javax.swing.JButton();
         txtMnv = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        btnXoa = new javax.swing.JButton();
         textSdt = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
         txtTennv = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        btnSapxep = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
@@ -73,6 +114,7 @@ public class Quanlynhanvien extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         Bangnhanvien = new javax.swing.JTable();
         chonNgaysinh = new com.toedter.calendar.JDateChooser();
+        btnXuatfile = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,19 +140,26 @@ public class Quanlynhanvien extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("HSL");
 
-        jButton2.setText("Sửa");
-        jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSua.setText("Sửa");
+        btnSua.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         txtMnv.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        jButton3.setText("Xoá");
-        jButton3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnXoa.setText("Xoá");
+        btnXoa.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         textSdt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         textSdt.setText("Số điện thoại");
-
-        jButton4.setText("Tìm");
-        jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         txtTennv.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTennv.addActionListener(new java.awt.event.ActionListener() {
@@ -119,8 +168,13 @@ public class Quanlynhanvien extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Sắp xếp");
-        jButton5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSapxep.setText("Sắp xếp");
+        btnSapxep.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSapxep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSapxepActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Địa chỉ");
@@ -143,20 +197,11 @@ public class Quanlynhanvien extends javax.swing.JFrame {
         txtDc.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         buttonGroup1.add(radioNam);
+        radioNam.setSelected(true);
         radioNam.setText("Nam");
-        radioNam.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioNamActionPerformed(evt);
-            }
-        });
 
         buttonGroup1.add(radioNu);
         radioNu.setText("Nữ");
-        radioNu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioNuActionPerformed(evt);
-            }
-        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Ngày sinh");
@@ -172,9 +217,22 @@ public class Quanlynhanvien extends javax.swing.JFrame {
 
             }
         ));
+        Bangnhanvien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BangnhanvienMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(Bangnhanvien);
 
         chonNgaysinh.setDateFormatString("dd-MM-yyyy");
+
+        btnXuatfile.setText("Xuất file");
+        btnXuatfile.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnXuatfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatfileActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -197,7 +255,7 @@ public class Quanlynhanvien extends javax.swing.JFrame {
                         .addComponent(radioNam)
                         .addGap(18, 18, 18)
                         .addComponent(radioNu)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(textSdt)
                     .addComponent(jLabel2)
@@ -211,48 +269,48 @@ public class Quanlynhanvien extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txtThuong, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(chonNgaysinh, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton6)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(151, 151, 151)
-                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jButton2)
-                .addGap(34, 34, 34)
-                .addComponent(jButton3)
-                .addGap(37, 37, 37)
-                .addComponent(jButton4)
-                .addGap(31, 31, 31)
-                .addComponent(jButton5)
+                        .addGap(168, 168, 168)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnSua)
+                        .addGap(34, 34, 34)
+                        .addComponent(btnXoa)
+                        .addGap(39, 39, 39)
+                        .addComponent(btnSapxep)
+                        .addGap(40, 40, 40)
+                        .addComponent(btnXuatfile))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 782, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(196, 196, 196))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnThem, jButton2, jButton3, jButton4, jButton5});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnSapxep, btnSua, btnThem, btnXoa, btnXuatfile});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtMnv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -260,12 +318,13 @@ public class Quanlynhanvien extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(txtDc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(48, 48, 48)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(radioNam)
-                                .addComponent(radioNu)))
+                                .addComponent(radioNu))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8)))
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -279,19 +338,19 @@ public class Quanlynhanvien extends javax.swing.JFrame {
                         .addComponent(chonNgaysinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
                         .addComponent(txtThuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(btnSua)
+                    .addComponent(btnXoa)
+                    .addComponent(btnSapxep)
+                    .addComponent(btnXuatfile))
                 .addGap(43, 43, 43))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnThem, jButton2, jButton3, jButton4, jButton5});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnSapxep, btnSua, btnThem, btnXoa, btnXuatfile});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -309,41 +368,239 @@ public class Quanlynhanvien extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
+        try {
+            String maNv = txtMnv.getText();
+            boolean trungMaNv = false;
 
-        
-        Date ns = chonNgaysinh.getDate();
-        String ngays=chuyendoingay(ns);
-        int sdt = Integer.parseInt(txtSdt.getText());
-        String gt = selectedButton;
-        int hsl = Integer.parseInt(txtHsl.getText());
-        double thuong = Double.parseDouble(txtThuong.getText());
-        if (radioNam.isSelected()) {
-            gt = selectedButton;
-        }
-        if (radioNu.isSelected()) {
-            gt = selectedButton;
-        }
-        double luong = (double) hsl * 1800000 + thuong;
-        nv = new Nhanvien(txtMnv.getText(), txtTennv.getText(), txtDc.getText(), gt, sdt, ngays, hsl, thuong, luong);
+            // Kiểm tra mã nhân viên trùng lặp
+            for (Nhanvien existingNv : dsnv) {
+                if (existingNv.getManv().equals(maNv)) {
+                    trungMaNv = true;
+                    break;
+                }
+            }
 
-        dsnv.add(nv);
-        loadtablenhanvien();
+            if (trungMaNv) {
+                JOptionPane.showMessageDialog(this, "Mã nhân viên đã tồn tại, vui lòng chọn mã khác.");
+            } else {
+                Date ns = chonNgaysinh.getDate();
+                String ngays = chuyendoingay(ns);
+                int sdt = Integer.parseInt(txtSdt.getText());
+                double hsl = Double.parseDouble(txtHsl.getText());
+                double thuong = Double.parseDouble(txtThuong.getText());
+
+                String gt = "";
+                if (radioNam.isSelected()) {
+                    gt = "Nam";
+                } else if (radioNu.isSelected()) {
+                    gt = "Nữ";
+                }
+
+                double luong = (double) hsl * 1800000 + thuong;
+
+                nv = new Nhanvien(maNv, txtTennv.getText(), txtDc.getText(), gt, sdt, ngays, hsl, thuong, luong);
+
+                dsnv.add(nv);
+                loadtablenhanvien();
+
+                JOptionPane.showMessageDialog(this, "Thêm nhân viên thành công.");
+
+                txtMnv.setText("");
+                txtTennv.setText("");
+                txtDc.setText("");
+                txtSdt.setText("");
+                txtHsl.setText("");
+                txtThuong.setText("");
+                chonNgaysinh.setDate(null);
+                radioNam.setSelected(false);
+                radioNu.setSelected(false);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng số cho SĐT, HSL, và thưởng.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra. Vui lòng kiểm tra lại dữ liệu đã nhập.");
+        }
     }//GEN-LAST:event_btnThemActionPerformed
 
-    private void radioNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNamActionPerformed
+    private void BangnhanvienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BangnhanvienMouseClicked
         // TODO add your handling code here:
-        selectedButton = radioNam.getText();
-    }//GEN-LAST:event_radioNamActionPerformed
+        dongchon = Bangnhanvien.getSelectedRow();
+        if (dongchon != -1) {
+            // Lấy dữ liệu từ bảng
+            String maNv = Bangnhanvien.getValueAt(dongchon, 0).toString();
+            String tenNv = Bangnhanvien.getValueAt(dongchon, 1).toString();
+            String diaChi = Bangnhanvien.getValueAt(dongchon, 2).toString();
+            String sdt = Bangnhanvien.getValueAt(dongchon, 4).toString();
+            String hsl = Bangnhanvien.getValueAt(dongchon, 6).toString();
+            String thuong = Bangnhanvien.getValueAt(dongchon, 7).toString();
+            String gt = Bangnhanvien.getValueAt(dongchon, 3).toString();
 
-    private void radioNuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNuActionPerformed
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            try {
+                Date ngaySinh = dateFormat.parse(Bangnhanvien.getValueAt(dongchon, 5).toString());
+                chonNgaysinh.setDate(ngaySinh);
+            } catch (ParseException e) {
+                // Xử lý khi có lỗi xảy ra trong quá trình chuyển đổi ngày
+                System.out.println(e);
+
+            }
+
+            // Hiển thị dữ liệu lên màn hình
+            txtMnv.setText(maNv);
+            txtTennv.setText(tenNv);
+            txtDc.setText(diaChi);
+            txtSdt.setText(sdt);
+            txtHsl.setText(hsl);
+            txtThuong.setText(thuong);
+            // Cập nhật trạng thái của radio button dựa trên giới tính
+            if (gt.equals("Nam")) {
+                radioNam.setSelected(true);
+            } else if (gt.equals("Nữ")) {
+                radioNu.setSelected(true);
+            }
+            // Cập nhật dữ liệu khác tùy theo trường hợp
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn một hàng trong bảng.");
+        }
+
+    }//GEN-LAST:event_BangnhanvienMouseClicked
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
-        selectedButton = radioNu.getText();
-    }//GEN-LAST:event_radioNuActionPerformed
+        dongchon = Bangnhanvien.getSelectedRow();
+        if (dongchon != -1) {
+            try {
+                // Kiểm tra xem có thay đổi mã nhân viên không
+                String maNv = txtMnv.getText();
+                String maNvCu = dsnv.get(dongchon).getManv();
+                boolean trungMaNv = false;
+
+                // Kiểm tra mã nhân viên trùng lặp (nếu mã nhân viên thay đổi)
+                if (!maNv.equals(maNvCu)) {
+                    for (Nhanvien existingNv : dsnv) {
+                        if (existingNv.getManv().equals(maNv)) {
+                            trungMaNv = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (trungMaNv) {
+                    JOptionPane.showMessageDialog(this, "Mã nhân viên đã tồn tại, vui lòng chọn mã khác.");
+                } else {
+                    Date ns = chonNgaysinh.getDate();
+                    String ngays = chuyendoingay(ns);
+                    int sdt = Integer.parseInt(txtSdt.getText());
+                    double hsl = Double.parseDouble(txtHsl.getText());
+                    double thuong = Double.parseDouble(txtThuong.getText());
+
+                    String gt = "";
+                    if (radioNam.isSelected()) {
+                        gt = "Nam";
+                    } else if (radioNu.isSelected()) {
+                        gt = "Nữ";
+                    }
+
+                    double luong = hsl * 1800000 + thuong;
+
+                    Nhanvien nvnew = new Nhanvien(maNv, txtTennv.getText(), txtDc.getText(), gt, sdt, ngays, hsl, thuong, luong);
+
+                    dsnv.set(dongchon, nvnew);
+                    loadtablenhanvien();
+
+                    JOptionPane.showMessageDialog(this, "Sửa nhân viên thành công.");
+
+                    txtMnv.setText("");
+                    txtTennv.setText("");
+                    txtDc.setText("");
+                    txtSdt.setText("");
+                    txtHsl.setText("");
+                    txtThuong.setText("");
+                    chonNgaysinh.setDate(null);
+                    radioNam.setSelected(false);
+                    radioNu.setSelected(false);
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng số cho SĐT, HSL, và thưởng.");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Có lỗi xảy ra. Vui lòng kiểm tra lại dữ liệu đã nhập.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng cần sửa.");
+        }
+
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        dongchon = Bangnhanvien.getSelectedRow();
+        if (dongchon != -1) {
+            int confirm = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xóa nhân viên này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                dsnv.remove(dongchon);
+                loadtablenhanvien();
+
+                JOptionPane.showMessageDialog(this, "Xóa nhân viên thành công.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng cần xóa.");
+        }
+
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnSapxepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSapxepActionPerformed
+
+        Comparator<Nhanvien> c = new Comparator<Nhanvien>() {
+            @Override
+            public int compare(Nhanvien o1, Nhanvien o2) {
+                return -o1.getTennv().compareToIgnoreCase(o2.getTennv());
+            }
+        };
+        Collections.sort(dsnv, c);
+        loadtablenhanvien();
+        JOptionPane.showMessageDialog(this, "Sắp xếp thành công theo tên.");
+
+
+    }//GEN-LAST:event_btnSapxepActionPerformed
+
+    private void btnXuatfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatfileActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+
+        // Hiển thị hộp thoại cho phép người dùng chọn vị trí lưu file
+        int result = fileChooser.showSaveDialog(null);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            try {
+                // Lấy đường dẫn của file được chọn
+                String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+
+                // Tạo đối tượng BufferedWriter để ghi dữ liệu vào file
+                BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+
+                // Lưu dữ liệu từ tablenhanvien vào file
+                for (Nhanvien nv : dsnv) {
+                    String line = nv.getManv() + ", " + nv.getTennv() + ", " + nv.getDiachi() + ", " + nv.getGt() + ", " + nv.getSdt() + ", " + nv.getNgays() + ", " + nv.getHsl() + "đ" + ", " + nv.getThuong() + "đ" + ", " + nv.getLuongnv() + "đ";
+                    writer.write(line);
+                    writer.newLine();
+                }
+
+                // Đóng BufferedWriter sau khi ghi xong
+                writer.close();
+
+                JOptionPane.showMessageDialog(null, "Dữ liệu đã được chuyển thành công vào file.");
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Có lỗi xảy ra khi ghi dữ liệu vào file.");
+            }
+    }//GEN-LAST:event_btnXuatfileActionPerformed
+    }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -377,13 +634,13 @@ public class Quanlynhanvien extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Bangnhanvien;
+    private javax.swing.JButton btnSapxep;
+    private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnXoa;
+    private javax.swing.JButton btnXuatfile;
     private javax.swing.ButtonGroup buttonGroup1;
     private com.toedter.calendar.JDateChooser chonNgaysinh;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

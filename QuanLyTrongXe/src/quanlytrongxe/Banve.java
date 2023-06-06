@@ -12,10 +12,11 @@ package quanlytrongxe;
 public class Banve extends javax.swing.JFrame {
 
     /**
-     * Creates new form Banve
+    
      */
     public Banve() {
         initComponents();
+        setLocationRelativeTo(null); 
     }
 
     /**

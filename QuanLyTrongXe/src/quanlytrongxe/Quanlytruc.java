@@ -16,6 +16,7 @@ public class Quanlytruc extends javax.swing.JFrame {
      */
     public Quanlytruc() {
         initComponents();
+        setLocationRelativeTo(null); 
     }
 
     /**

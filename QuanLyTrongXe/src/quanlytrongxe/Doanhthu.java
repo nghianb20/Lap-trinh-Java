@@ -14,6 +14,7 @@ public class Doanhthu extends javax.swing.JFrame {
 
     public Doanhthu() {
         initComponents();
+        setLocationRelativeTo(null); 
     }
 
     /**

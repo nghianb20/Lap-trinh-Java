@@ -16,6 +16,7 @@ public class MenuQuanTri extends javax.swing.JFrame {
      */
     public MenuQuanTri() {
         initComponents();
+        setLocationRelativeTo(null); 
     }
 
     /**

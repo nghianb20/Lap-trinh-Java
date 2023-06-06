@@ -12,7 +12,7 @@ import quanlytrongxe.Class.Nhanvien;
 
 public class Tablenhanvien extends AbstractTableModel{
     private String name[] ={"Mã nv", "Tên nv", "Địa chỉ", "Giới tính", "SDT", "Ngày sinh", "HSL","Thưởng","Lương"};
-    private Class classess[]={String.class, String.class, String.class,String.class, int.class, String.class, int.class, double.class,double.class};
+    private Class classess[]={String.class, String.class, String.class,String.class, int.class, String.class, double.class, double.class,double.class};
     ArrayList<Nhanvien> dsnv=new ArrayList<Nhanvien>();
     
     public Tablenhanvien(ArrayList<Nhanvien> nv){

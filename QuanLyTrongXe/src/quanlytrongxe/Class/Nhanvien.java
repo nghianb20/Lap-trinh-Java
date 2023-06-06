@@ -12,8 +12,9 @@ package quanlytrongxe.Class;
 public class Nhanvien {
      String manv, tennv, diachi, gt, ngays;
      double hsl, thuong, luongnv;
+     int sdt;
      
-    int sdt;
+    
 
     public Nhanvien(String manv, String tennv, String diachi, String gt,int sdt, String ngays, double hsl, double thuong,double luongnv ) {
         this.manv = manv;
@@ -69,7 +70,7 @@ public class Nhanvien {
         return hsl;
     }
 
-    public void setHsl(float hsl) {
+    public void setHsl(double hsl) {
         this.hsl = hsl;
     }
 
@@ -85,7 +86,7 @@ public class Nhanvien {
         return thuong;
     }
 
-    public void setThuong(int thuong) {
+    public void setThuong(double thuong) {
         this.thuong = thuong;
     }
 

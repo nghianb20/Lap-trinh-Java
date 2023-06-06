@@ -16,6 +16,7 @@ public class Quanlykhachhang extends javax.swing.JFrame {
      */
     public Quanlykhachhang() {
         initComponents();
+        setLocationRelativeTo(null); 
     }
 
     /**
