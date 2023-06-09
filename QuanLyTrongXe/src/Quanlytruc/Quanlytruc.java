@@ -1,24 +1,34 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Quanlytruc;
 
+
 import Menuquantri.MenuQuanTri;
+import java.awt.List;
+import java.awt.MenuContainer;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Iterator;
+import javax.swing.RowSorter;
+import javax.swing.RowSorter.SortKey;
+import javax.swing.SortOrder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
- * @author Nguyen Nghia
+ * @author hohuu
  */
 public class Quanlytruc extends javax.swing.JFrame {
 
     /**
-     * Creates new form Quanlytruc
+     * Creates new form NewJFrame
      */
     public Quanlytruc() {
         initComponents();
-        setLocationRelativeTo(null); 
     }
 
     /**
@@ -30,17 +40,122 @@ public class Quanlytruc extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        caToi = new javax.swing.JRadioButton();
+        caSang = new javax.swing.JRadioButton();
+        caChieu = new javax.swing.JRadioButton();
+        maNhanVien = new javax.swing.JTextField();
+        viTriNhaXe = new javax.swing.JTextField();
+        date = new com.toedter.calendar.JDateChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        btnThem = new javax.swing.JButton();
+        btnSua = new javax.swing.JButton();
+        btnXoa = new javax.swing.JButton();
+        btnTim = new javax.swing.JButton();
+        btnSapXep = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel4.setText("Quản lý trực");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        jLabel1.setText("Quản Lý Ca Trực");
 
-        jButton6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton6.setText("<< Trở về");
-        jButton6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Mã nhân viên:");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setText("Vị trí nhà xe:");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setText("Ngày/Tháng/Năm:");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setText("Ca trực:");
+
+        buttonGroup1.add(caToi);
+        caToi.setText("Ca tối");
+
+        buttonGroup1.add(caSang);
+        caSang.setText("Ca sáng");
+
+        buttonGroup1.add(caChieu);
+        caChieu.setText("Ca chiều");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Mã nhân viên", "Vị trí nhà xe", "Ngày/Tháng/Năm", "Ca trực"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane1.setViewportView(jTable1);
+
+        btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
+
+        btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
+
+        btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
+
+        btnTim.setText("Tìm");
+        btnTim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimActionPerformed(evt);
+            }
+        });
+
+        btnSapXep.setText("Sắp xếp");
+        btnSapXep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSapXepActionPerformed(evt);
+            }
+        });
+
+        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton6.setText("<< Trở Về");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -52,31 +167,213 @@ public class Quanlytruc extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(viTriNhaXe, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(maNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(caSang)
+                                .addGap(18, 18, 18)
+                                .addComponent(caChieu)
+                                .addGap(18, 18, 18)
+                                .addComponent(caToi)))
+                        .addGap(0, 268, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(btnThem)
+                .addGap(63, 63, 63)
+                .addComponent(btnSua)
+                .addGap(63, 63, 63)
+                .addComponent(btnXoa)
+                .addGap(45, 45, 45)
+                .addComponent(btnTim)
+                .addGap(41, 41, 41)
+                .addComponent(btnSapXep)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jButton6)
-                .addGap(100, 100, 100)
-                .addComponent(jLabel4)
-                .addContainerGap(343, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(266, 266, 266))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jLabel4))
-                .addContainerGap(627, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(maNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viTriNhaXe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(caSang)
+                            .addComponent(caChieu)
+                            .addComponent(caToi)))
+                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnThem)
+                    .addComponent(btnSua)
+                    .addComponent(btnXoa)
+                    .addComponent(btnTim)
+                    .addComponent(btnSapXep))
+                .addGap(68, 68, 68))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        if(!maNhanVien.getText().isEmpty() && !viTriNhaXe.getText().isEmpty() && date.getDate() != null && buttonGroup1.getSelection() != null) {
+            CaTruc caTruc = new CaTruc();
+            caTruc.setMaNV(maNhanVien.getText());
+            caTruc.setViTriNhaXe(viTriNhaXe.getText());
+            //
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            String dateString = dateFormat.format(date.getDate());
+            caTruc.setDate(dateString);
+            //
+            caSang.setActionCommand("Ca sáng");
+            caChieu.setActionCommand("Ca chiều");
+            caToi.setActionCommand("Ca tối");
+            caTruc.setCaTruc(buttonGroup1.getSelection().getActionCommand());
+            boolean isAdded = FakeData.DsCaTruc.add(caTruc);
+            if(isAdded){
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                String rowData[] = {
+                    caTruc.getMaNV(),
+                    caTruc.getViTriNhaXe(),
+                    caTruc.getDate(),
+                    caTruc.getCaTruc()
+                };
+                model.insertRow(0, rowData);
+                maNhanVien.setText("");
+                viTriNhaXe.setText("");
+                date.setDate(null);
+                buttonGroup1.clearSelection();
+            }
+        }    
+    }//GEN-LAST:event_btnThemActionPerformed
+
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
         MenuQuanTri mn=new MenuQuanTri();
         mn.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        if(!FakeData.DsCaTruc.isEmpty()) {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            CaTruc caTruc = new CaTruc();
+            caTruc.setMaNV((String) model.getValueAt(0, 0));
+            caTruc.setDate((String) model.getValueAt(0, 2));
+            caTruc.setCaTruc((String) model.getValueAt(0, 3));
+            FakeData.DsCaTruc.remove(caTruc);
+            model.removeRow(0);
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        CaTruc caTruc = new CaTruc();
+        caTruc.setMaNV((String) model.getValueAt(selectedRow, 0));
+        caTruc.setDate((String) model.getValueAt(selectedRow, 2));
+        caTruc.setCaTruc((String) model.getValueAt(selectedRow, 3));
+        Iterator<CaTruc> iterator = FakeData.DsCaTruc.iterator();
+        CaTruc ct = null;
+        while(iterator.hasNext()) {
+            CaTruc t = iterator.next();
+            if(t.equals(caTruc)){
+                ct = t;
+                break;
+            }
+        }
+        if(!maNhanVien.getText().isEmpty()) {
+            jTable1.setValueAt(maNhanVien.getText(), selectedRow, 0);
+            ct.setMaNV(maNhanVien.getText());
+        }
+        if(!viTriNhaXe.getText().isEmpty()) {
+            jTable1.setValueAt(viTriNhaXe.getText(), selectedRow, 1);
+            ct.setViTriNhaXe(viTriNhaXe.getText());
+        }
+        if(date.getDate() != null) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            String dateString = dateFormat.format(date.getDate());
+            jTable1.setValueAt(dateString, selectedRow, 2);
+            ct.setDate(dateString);
+        }
+        if( buttonGroup1.getSelection() != null) {
+            caSang.setActionCommand("Ca sáng");
+            caChieu.setActionCommand("Ca chiều");
+            caToi.setActionCommand("Ca tối");
+            jTable1.setValueAt(buttonGroup1.getSelection().getActionCommand(), selectedRow, 3);
+            ct.setCaTruc(buttonGroup1.getSelection().getActionCommand());
+        }
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnSapXepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSapXepActionPerformed
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(jTable1.getModel());
+        jTable1.setRowSorter(sorter);
+        int selectedColumn = jTable1.getSelectedColumn();
+        if(selectedColumn != -1)
+            sorter.toggleSortOrder(selectedColumn);
+    }//GEN-LAST:event_btnSapXepActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        FakeData.DsCaTruc.forEach(
+            caTruc -> {
+                String rowData[] = {
+                    caTruc.getMaNV(),
+                    caTruc.getViTriNhaXe(),
+                    caTruc.getDate(),
+                    caTruc.getCaTruc()
+                 };
+                model.insertRow(0, rowData);
+            }
+        );
+        
+    }//GEN-LAST:event_formWindowActivated
+
+    private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
+        TimKiem_QuanLyTruc x=new TimKiem_QuanLyTruc();
+        x.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnTimActionPerformed
 
     /**
      * @param args the command line arguments
@@ -104,17 +401,44 @@ public class Quanlytruc extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Quanlytruc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Quanlytruc().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSapXep;
+    private javax.swing.JButton btnSua;
+    private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnTim;
+    private javax.swing.JButton btnXoa;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JRadioButton caChieu;
+    private javax.swing.JRadioButton caSang;
+    private javax.swing.JRadioButton caToi;
+    private com.toedter.calendar.JDateChooser date;
     private javax.swing.JButton jButton6;
+    private com.toedter.calendar.JCalendar jCalendar1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField maNhanVien;
+    private javax.swing.JTextField viTriNhaXe;
     // End of variables declaration//GEN-END:variables
 }
