@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package quanlytrongxe;
+package Quanlynhanvien;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -22,8 +22,9 @@ import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-import quanlytrongxe.Class.Nhanvien;
-import quanlytrongxe.Table.Tablenhanvien;
+import Quanlynhanvien.Nhanvien;
+import Menuquantri.MenuQuanTri;
+import Quanlynhanvien.Tablenhanvien;
 
 /**
  *
@@ -38,16 +39,16 @@ public class Quanlynhanvien extends javax.swing.JFrame {
 
     public void fakedata() {
         // Tạo dữ liệu mẫu
-        Nhanvien nv1 = new Nhanvien("NV001", "Nguyễn Văn D", "Hà Nội", "Nam", 123456789, "01-01-2000", 1.5, 500000, 2700000);
+        Nhanvien nv1 = new Nhanvien("NV010", "Nguyễn Văn D", "Hà Nội", "Nam", 123456789, "01-01-2000", 1.5, 500000, 2700000);
         Nhanvien nv2 = new Nhanvien("NV002", "Trần Thị A", "Hồ Chí Minh", "Nữ", 987654321, "02-02-1999", 2.0, 1000000, 3800000);
-        Nhanvien nv3 = new Nhanvien("NV003", "Lê Văn G", "Đà Nẵng", "Nam", 456123789, "03-03-1998", 1.8, 700000, 3200000);
-        Nhanvien nv4 = new Nhanvien("NV004", "Phạm Thị D", "Hải Phòng", "Nữ", 654321987, "04-04-1997", 1.6, 800000, 2900000);
-        Nhanvien nv5 = new Nhanvien("NV005", "Vũ Thị E", "Cần Thơ", "Nữ", 321987654, "05-05-1996", 1.7, 900000, 3100000);
-        Nhanvien nv6 = new Nhanvien("NV006", "Đinh Thị F", "Huế", "Nữ", 789456123, "06-06-1995", 2.2, 1200000, 4200000);
-        Nhanvien nv7 = new Nhanvien("NV007", "Hoàng Thị G", "Nha Trang", "Nữ", 159357486, "07-07-1994", 1.9, 1000000, 3500000);
-        Nhanvien nv8 = new Nhanvien("NV008", "Lý Thị H", "Đà Lạt", "Nữ", 753159852, "08-08-1993", 1.8, 800000, 3200000);
-        Nhanvien nv9 = new Nhanvien("NV009", "Trương Văn I", "Vũng Tàu", "Nam", 852963741, "09-09-1992", 2.5, 1500000, 4200000);
-        Nhanvien nv10 = new Nhanvien("NV010", "Nguyễn Thị I", "Hải Dương", "Nữ", 246813579, "10-10-1991", 1.5, 500000, 2700000);
+        Nhanvien nv3 = new Nhanvien("NV006", "Lê Văn G", "Đà Nẵng", "Nam", 456123789, "03-03-1998", 1.8, 700000, 3200000);
+        Nhanvien nv4 = new Nhanvien("NV005", "Phạm Thị D", "Hải Phòng", "Nữ", 654321987, "04-04-1997", 1.6, 800000, 2900000);
+        Nhanvien nv5 = new Nhanvien("NV004", "Vũ Thị E", "Cần Thơ", "Nữ", 321987654, "05-05-1996", 1.7, 900000, 3100000);
+        Nhanvien nv6 = new Nhanvien("NV007", "Đinh Thị F", "Huế", "Nữ", 789456123, "06-06-1995", 2.2, 1200000, 4200000);
+        Nhanvien nv7 = new Nhanvien("NV008", "Hoàng Thị G", "Nha Trang", "Nữ", 159357486, "07-07-1994", 1.9, 1000000, 3500000);
+        Nhanvien nv8 = new Nhanvien("NV001", "Lý Thị H", "Đà Lạt", "Nữ", 753159852, "08-08-1993", 1.8, 800000, 3200000);
+        Nhanvien nv9 = new Nhanvien("NV003", "Trương Văn I", "Vũng Tàu", "Nam", 852963741, "09-09-1992", 2.5, 1500000, 4200000);
+        Nhanvien nv10 = new Nhanvien("NV009", "Nguyễn Thị I", "Hải Dương", "Nữ", 246813579, "10-10-1991", 1.5, 500000, 2700000);
 
         // Thêm dữ liệu vào danh sách dsnv
         dsnv.add(nv1);
@@ -554,12 +555,12 @@ public class Quanlynhanvien extends javax.swing.JFrame {
         Comparator<Nhanvien> c = new Comparator<Nhanvien>() {
             @Override
             public int compare(Nhanvien o1, Nhanvien o2) {
-                return -o1.getTennv().compareToIgnoreCase(o2.getTennv());
+                return o1.getManv().compareToIgnoreCase(o2.getManv());
             }
         };
         Collections.sort(dsnv, c);
         loadtablenhanvien();
-        JOptionPane.showMessageDialog(this, "Sắp xếp thành công theo tên.");
+        JOptionPane.showMessageDialog(this, "Sắp xếp thành công theo MNV.");
 
 
     }//GEN-LAST:event_btnSapxepActionPerformed

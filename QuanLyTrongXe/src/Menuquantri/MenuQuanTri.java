@@ -3,7 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package quanlytrongxe;
+package Menuquantri;
+
+import Doanhthu.Doanhthu;
+import Quanlytruc.Quanlytruc;
+import Banve.Banve;
+import Quanlykhachhang.Quanlykhachhang;
+import Quanlynhanvien.Quanlynhanvien;
 
 /**
  *
