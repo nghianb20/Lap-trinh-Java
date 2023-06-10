@@ -5,9 +5,9 @@ package Quanlynhanvien;
 
 
 public class Nhanvien implements Comparable<Nhanvien>{
-     String manv, tennv, diachi, gt, ngays;
-     double hsl, thuong, luongnv;
-     int sdt;
+     private String manv, tennv, diachi, gt, ngays;
+     private double hsl, thuong, luongnv;
+     private int sdt;
      
     
 

@@ -8,23 +8,22 @@ package Quanlynhanvien;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.Collator;
+
 import java.text.ParseException;
-import java.text.RuleBasedCollator;
+
 import javax.swing.JFileChooser;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import java.util.Collections;
-import java.util.Comparator;
+;
 import java.util.Date;
-import java.util.Locale;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
-import Quanlynhanvien.Nhanvien;
+import javax.swing.JOptionPane;
+
+
+
 import Menuquantri.MenuQuanTri;
-import Quanlynhanvien.Tablenhanvien;
 
 /**
  *
@@ -555,7 +554,7 @@ public class Quanlynhanvien extends javax.swing.JFrame {
         
         Collections.sort(dsnv);
         loadtablenhanvien();
-        JOptionPane.showMessageDialog(this, "Sắp xếp thành công theo tên.");
+        JOptionPane.showMessageDialog(this, "Sắp xếp thành công .");
 
 
     }//GEN-LAST:event_btnSapxepActionPerformed
