@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Menuquantri;
+package quanlytrongxe;
 
-import Menuquantri.TaiKhoan;
+import Menuquantri.MenuQuanTri;
+import quanlytrongxe.TaiKhoan;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 

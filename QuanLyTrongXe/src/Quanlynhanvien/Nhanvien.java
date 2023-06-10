@@ -2,10 +2,12 @@
 package Quanlynhanvien;
 
 
-public class Nhanvien {
-     String manv, tennv, diachi, gt, ngays;
-     double hsl, thuong, luongnv;
-     int sdt;
+
+
+public class Nhanvien implements Comparable<Nhanvien>{
+     private String manv, tennv, diachi, gt, ngays;
+     private double hsl, thuong, luongnv;
+     private int sdt;
      
     
 
@@ -103,4 +105,18 @@ public class Nhanvien {
     public double luong(){
         return 1800000*hsl + thuong;
     }
+// sap xep theo ten, trung sx theo manv
+    @Override
+    public int compareTo(Nhanvien o) {
+        String[] str = this.tennv.split(" ");
+        String ten1 = str[str.length - 1];
+
+        str = o.tennv.split(" ");
+        String ten2 = str[str.length - 1];
+        if(ten1.equalsIgnoreCase(ten2))
+            return this.manv.compareToIgnoreCase(o.manv);
+        return ten1.compareToIgnoreCase(ten2);
+    }
+    
+    
 }

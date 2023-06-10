@@ -1,0 +1,10 @@
+KH001, Tran Trung Kien, Nam, Sinh vien, 0123456789, Ha Noi, 28/05/2002
+KH002, Tran Tien Dung, Nam, Sinh vien, 0444444444, Ha Noi, 02/03/2001
+KH003, Nguyen Van A, Nu, Giao Vien, 0333333333, Ha Nam, 10/04/1996
+KH004, Nguyen Tu Nghia, Nam, Sinh vien, 0123456788, Ninh Binh, 28/02/2002
+KH005, Le Truong Vu, Nam, Sinh vien, 0355555555, Ha Noi, 04/05/2001
+KH006, Ho Huu Phuong, Nu, Giao Vien, 0866666666, Nghe An, 10/04/1992
+KH007, Ngo Thi Hoai, Nu, Sinh vien, 0987654321, Ha Noi, 08/09/2000
+KH008, Doan Huong Giang, Nu, Sinh vien, 0381111111, Ha Noi, 03/08/2002
+KH009, Nguyen Do Thi Linh, Nu, Giao Vien, 0333333333, Ha Noi, 10/04/1990
+KH010, Bui Cong Vuong, Nam, Sinh vien, 0123456788, Quang Ninh, 09/06/1998
