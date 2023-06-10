@@ -21,14 +21,14 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
-
-
 import Menuquantri.MenuQuanTri;
 
 /**
  *
  * @author Nguyen Nghia
  */
+
+
 public class Quanlynhanvien extends javax.swing.JFrame {
 
     ArrayList<Nhanvien> dsnv = new ArrayList<Nhanvien>();
@@ -370,56 +370,64 @@ public class Quanlynhanvien extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             String maNv = txtMnv.getText();
-            boolean trungMaNv = false;
+            String tenNv = txtTennv.getText();
+            String diaChi = txtDc.getText();
 
-            // Kiểm tra mã nhân viên trùng lặp
-            for (Nhanvien existingNv : dsnv) {
-                if (existingNv.getManv().equals(maNv)) {
-                    trungMaNv = true;
-                    break;
-                }
-            }
-
-            if (trungMaNv) {
-                JOptionPane.showMessageDialog(this, "Mã nhân viên đã tồn tại, vui lòng chọn mã khác.");
+            // Kiểm tra trường rỗng
+            if (maNv.isEmpty() || tenNv.isEmpty() || diaChi.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin.");
             } else {
-                Date ns = chonNgaysinh.getDate();
-                String ngays = chuyendoingay(ns);
-                int sdt = Integer.parseInt(txtSdt.getText());
-                double hsl = Double.parseDouble(txtHsl.getText());
-                double thuong = Double.parseDouble(txtThuong.getText());
+                boolean trungMaNv = false;
 
-                String gt = "";
-                if (radioNam.isSelected()) {
-                    gt = "Nam";
-                } else if (radioNu.isSelected()) {
-                    gt = "Nữ";
+                // Kiểm tra mã nhân viên trùng lặp
+                for (Nhanvien existingNv : dsnv) {
+                    if (existingNv.getManv().equals(maNv)) {
+                        trungMaNv = true;
+                        break;
+                    }
                 }
+                if (trungMaNv) {
+                    JOptionPane.showMessageDialog(this, "Mã nhân viên đã tồn tại, vui lòng chọn mã khác.");
+                } else {
+                    Date ns = chonNgaysinh.getDate();
+                    String ngays = chuyendoingay(ns);
+                    int sdt = Integer.parseInt(txtSdt.getText());
+                    double hsl = Double.parseDouble(txtHsl.getText());
+                    double thuong = Double.parseDouble(txtThuong.getText());
 
-                double luong = (double) hsl * 1800000 + thuong;
+                    String gt = "";
+                    if (radioNam.isSelected()) {
+                        gt = "Nam";
+                    } else if (radioNu.isSelected()) {
+                        gt = "Nữ";
+                    }
 
-                nv = new Nhanvien(maNv, txtTennv.getText(), txtDc.getText(), gt, sdt, ngays, hsl, thuong, luong);
+                    double luong = (double) hsl * 1800000 + thuong;
 
-                dsnv.add(nv);
-                loadtablenhanvien();
+                    nv = new Nhanvien(maNv, tenNv, diaChi, gt, sdt, ngays, hsl, thuong, luong);
 
-                JOptionPane.showMessageDialog(this, "Thêm nhân viên thành công.");
+                    dsnv.add(nv);
+                    loadtablenhanvien();
 
-                txtMnv.setText("");
-                txtTennv.setText("");
-                txtDc.setText("");
-                txtSdt.setText("");
-                txtHsl.setText("");
-                txtThuong.setText("");
-                chonNgaysinh.setDate(null);
-                radioNam.setSelected(false);
-                radioNu.setSelected(false);
+                    JOptionPane.showMessageDialog(this, "Thêm nhân viên thành công.");
+
+                    txtMnv.setText("");
+                    txtTennv.setText("");
+                    txtDc.setText("");
+                    txtSdt.setText("");
+                    txtHsl.setText("");
+                    txtThuong.setText("");
+                    chonNgaysinh.setDate(null);
+                    radioNam.setSelected(false);
+                    radioNu.setSelected(false);
+                }
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng số cho SĐT, HSL, và thưởng.");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Có lỗi xảy ra. Vui lòng kiểm tra lại dữ liệu đã nhập.");
         }
+
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void BangnhanvienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BangnhanvienMouseClicked
@@ -542,16 +550,26 @@ public class Quanlynhanvien extends javax.swing.JFrame {
                 loadtablenhanvien();
 
                 JOptionPane.showMessageDialog(this, "Xóa nhân viên thành công.");
+
+                txtMnv.setText("");
+                txtTennv.setText("");
+                txtDc.setText("");
+                txtSdt.setText("");
+                txtHsl.setText("");
+                txtThuong.setText("");
+                chonNgaysinh.setDate(null);
+                radioNam.setSelected(false);
+                radioNu.setSelected(false);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng cần xóa.");
         }
 
+
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnSapxepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSapxepActionPerformed
 
-        
         Collections.sort(dsnv);
         loadtablenhanvien();
         JOptionPane.showMessageDialog(this, "Sắp xếp thành công .");
