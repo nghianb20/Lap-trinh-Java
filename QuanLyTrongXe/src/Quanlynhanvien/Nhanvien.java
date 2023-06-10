@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package quanlytrongxe.Class;
 
-/**
- *
- * @author Nguyen Nghia
- */
+package Quanlynhanvien;
+
+
 public class Nhanvien {
      String manv, tennv, diachi, gt, ngays;
      double hsl, thuong, luongnv;

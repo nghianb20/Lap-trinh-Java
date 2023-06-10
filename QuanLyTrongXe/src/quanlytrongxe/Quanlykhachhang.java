@@ -29,11 +29,14 @@ public class Quanlykhachhang extends javax.swing.JFrame {
      */
     public Quanlykhachhang() {
         initComponents();
+<<<<<<< HEAD
         listKh = new ArrayList<KhachHang>();
         model = (DefaultTableModel) tblListKH.getModel();
         fakeData();
         setLocationRelativeTo(null); 
         loadData();
+=======
+>>>>>>> fa70bf3b2836e65b1fd2d955f82ac0369dfe2e7d
     }
 //  Tai lai du lieu
     public void loadData(){
