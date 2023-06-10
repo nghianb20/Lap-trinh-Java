@@ -552,15 +552,10 @@ public class Quanlynhanvien extends javax.swing.JFrame {
 
     private void btnSapxepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSapxepActionPerformed
 
-        Comparator<Nhanvien> c = new Comparator<Nhanvien>() {
-            @Override
-            public int compare(Nhanvien o1, Nhanvien o2) {
-                return o1.getManv().compareToIgnoreCase(o2.getManv());
-            }
-        };
-        Collections.sort(dsnv, c);
+        
+        Collections.sort(dsnv);
         loadtablenhanvien();
-        JOptionPane.showMessageDialog(this, "Sắp xếp thành công theo MNV.");
+        JOptionPane.showMessageDialog(this, "Sắp xếp thành công theo tên.");
 
 
     }//GEN-LAST:event_btnSapxepActionPerformed
