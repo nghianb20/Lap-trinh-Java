@@ -479,7 +479,7 @@ public class Quanlykhachhang extends javax.swing.JFrame {
 // Nut tro ve menu
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        MenuQuanTri mn=new MenuQuanTri();
+        Menuquantri.MenuQuanTri mn=new Menuquantri.MenuQuanTri();
         mn.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
